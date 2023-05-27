@@ -1,5 +1,9 @@
+import {grammarTopics} from './exercises./grammar.js'
+
 showWelcome()
 styleWelcome()
+
+
 
 // create a welcome-text
 function showWelcome() {
@@ -16,13 +20,18 @@ function showWelcome() {
     const btnContainer = document.createElement('div')
     btnContainer.append(grammarBtn, vocabularyBtn)
     
+    //wrap both welcomeText and the buttons into div
+    const wrapper = document.createElement('div')
+    wrapper.append(welcomeText, btnContainer)
+
     // append both welcomeText and the buttons to the body
-    document.body.append(welcomeText, btnContainer)
+    document.body.append(wrapper)
 
     // add event listeners to the buttons
     grammarBtn.addEventListener('click', () => {
         document.body.innerHTML = ''
         showGrammar()
+        styleGrammar()
     })
 
     vocabularyBtn.addEventListener('click', () => {
@@ -32,26 +41,104 @@ function showWelcome() {
 
 }
 
-// add styles to showWelcome
-function styleWelcome() {
-    const welcomeText = document.querySelector('h1')
-    welcomeText.style.textAlign = 'center'
-    welcomeText.style.fontSize = '40px'
-    welcomeText.style.marginTop = '20px'
+// add styles to wrapper
 
-    const btnContainer = document.querySelector('div')
-    btnContainer.style.display = 'flex'
-    btnContainer.style.justifyContent = 'space-evenly'
-    btnContainer.style.marginTop = '20px'
+function styleWelcome() {
+    const wrapper = document.querySelector('div')
+    wrapper.style.textAlign = 'center'
+    wrapper.style.marginTop = '100px'
+    wrapper.style.marginBottom = '100px'
+    wrapper.style.fontFamily = 'sans-serif'
+    wrapper.style.fontSize = '40px'
+    wrapper.style.fontWeight = 'bold'
+    wrapper.style.color = 'black'
+
+//add styles to buttons
 
     const buttons = document.querySelectorAll('button')
     buttons.forEach(btn => {
-        btn.style.fontSize = '20px'
+        btn.style.margin = '10px'
         btn.style.padding = '10px'
         btn.style.borderRadius = '5px'
+        btn.style.backgroundColor = 'lightblue'
         btn.style.border = 'none'
         btn.style.cursor = 'pointer'
-    })
+    
+        btn.addEventListener('mouseover', () => {
+            btn.style.backgroundColor = 'lightgreen'
+        })
+        
+        btn.addEventListener('mouseout', () => {
+             btn.style.backgroundColor = 'lightblue'
+        })
+
+            
+    })       
+                
 }
 
+function showGrammar() {
+    const title = document.createElement('h1')
+    title.innerText = 'Elige un tema para practicar la gramática'
 
+    const backBtn = document.createElement('button')
+    backBtn.innerText = 'Volver'
+
+    const header = document.createElement('div')
+    header.append(title, backBtn)
+    document.body.append(header)
+
+    backBtn.addEventListener('click', () => {
+        document.body.innerHTML = ''
+        showWelcome()
+        styleWelcome()
+    })
+
+    const topics = ['Tema 1', 'Tema 2', 'Tema 3', 'Tema 4', 'Tema 5', 'Tema 6', 'Tema 7', 'Tema 8', 'Tema 9', 'Tema 10',]
+
+    const topicButtonsContainer = document.createElement('div')
+    document.body.append(topicButtonsContainer)
+
+    topics.forEach(topic => {
+        const topicBtn = document.createElement('button')
+        topicBtn.innerText = topic
+        topicButtonsContainer.append(topicBtn)
+    })
+   
+}
+
+//add styles to grammar
+
+function styleGrammar() {
+    const wrapper = document.querySelector('div')
+    wrapper.style.textAlign = 'center'
+    wrapper.style.marginTop = '100px'
+    wrapper.style.marginBottom = '100px'
+    wrapper.style.fontFamily = 'sans-serif'
+    wrapper.style.fontSize = '40px'
+    wrapper.style.fontWeight = 'bold'
+    wrapper.style.color = 'black'
+
+//add styles to buttons
+
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach(btn => {
+        btn.style.margin = '10px'
+        btn.style.padding = '10px'
+        btn.style.borderRadius = '5px'
+        btn.style.backgroundColor = 'lightblue'
+        btn.style.border = 'none'
+        btn.style.cursor = 'pointer'
+    
+        btn.addEventListener('mouseover', () => {
+            btn.style.backgroundColor = 'lightgreen'
+        })
+        
+        btn.addEventListener('mouseout', () => {
+             btn.style.backgroundColor = 'lightblue'
+        })
+
+            
+    })
+
+}

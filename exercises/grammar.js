@@ -17,7 +17,7 @@ const grammarTopics = [
                             'compra',
                             'compramos',
                             'compráis',
-                            'compran',                          
+                            'compran',                        
                         ],
                     },
                     {
